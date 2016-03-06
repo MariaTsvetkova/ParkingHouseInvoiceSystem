@@ -1,0 +1,25 @@
+<div ng-controller="customersCtrl">
+	<p>Search: <input type="text" ng-model="searchCustomer"></p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+	                <th>Customer</th>
+	                <th>Status</th>
+	                <th>Isic cood</th>
+	                <th>Phone Number</th>
+	                <th></th>
+				</tr>
+            </thead>
+			<tbody>
+				<tr ng-repeat="person in persons  | filter : searchCustomer ">
+					<td>{{person.nameLastname}}</td>
+					<td>{{person.isPremium ? 'Premium':'Regular'}}</td>
+					<td>{{person.isic}}</td>
+					<td>{{person.phoneNumber}}</td>
+					<td> <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#myModal"  ng-click="customerTableBtnClick(person)" >Info</button></td>        
+				</tr>			
+		 	</tbody>
+		</table>
+	<div ng-include="'partials/vehicleInfoModal.html'"></div>
+	<div ng-include="'partials/invoiceModal.html'"></div>
+</div>

@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div class="modal fade" id="vehicleInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Datas of {{customer.nameLastname}}</h4>
+      </div>
+      <div class="modal-body">
+      
+        <div>
+        	<p style="font-weight: bold;">Vehicle number:</p>
+  			<p>
+        		<select ng-model="vehicle" ng-options="vehicle.vehicleNumber for vehicle in customer.vehicleList"></select>
+			</p>
+        <div>
+
+		 <table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <th>Parking House</th>
+		        <th>Start Date</th>
+		        <th>End Date</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr ng-repeat="parking in vehicle.parkingList  | filter : date">
+		        <td>{{parking.parkingHouse}}</td>
+		        <td>{{parking.startDate | asDate |  date:'MMM dd yyyy h:mma'}}</td>
+		        <td>{{parking.endDate   | asDate |  date:'MMM dd yyyy h:mma'}}</td>
+		      </tr>		     
+		    </tbody>
+		  </table>
+		
+
+      </div>
+      <div class="modal-footer">
+      <div><p><select ng-model="monthIndex" ng-options="months.indexOf(m) as m for m in months"></select></p><div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="generateInvoice(customer.isic, monthIndex)" >Generate Invoice</button>
+      </div>
+    </div>
+  </div>
+</div>
